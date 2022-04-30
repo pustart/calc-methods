@@ -8,7 +8,10 @@ class CubicSpline:
         self.x = x
         self.y = y
 
-        h = np.diff(x)
+        h = []
+        for n in range(len(x) - 1):
+            h.append(x[n + 1] - x[n] if x[n + 1] - x[n] != 0 else 1e-5)
+
         self.nx = len(x)
 
         self.a = [iy for iy in y]
