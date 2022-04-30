@@ -24,6 +24,9 @@ class CubicSpline:
             tb = (self.a[i + 1] - self.a[i]) / h[i] - h[i] * (self.c[i + 1] + 2.0 * self.c[i]) / 3.0
             self.b.append(tb)
 
+        self.b.append(0)
+        self.d.append(0)
+
     def point(self, param):
         if param < self.x[0] or param > self.x[-1]:
             return None

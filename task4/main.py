@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
+import numpy as np
+
 from cubic_spline_2d import *
 
 
 def calculate_2d_spline_interpolation(x, y, num=100):
     cubic_spline_2d = CubicSpline2D(x, y)
-    params = np.linspace(cubic_spline_2d.params[0], cubic_spline_2d.params[-1], num + 1)[:-1]
+    params = np.linspace(cubic_spline_2d.params[0], cubic_spline_2d.params[-1], num + 1)
 
     result_x, result_y = [], []
     for param in params:
