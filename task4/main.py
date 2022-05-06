@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
 from cubic_spline_2d import *
+from cubic_spline_3d import *
 
 
 def calculate_2d_spline_interpolation(x, y, num=100):
