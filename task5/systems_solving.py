@@ -3,26 +3,27 @@ import numpy as np
 ACCURACY = 1e-10
 
 
-def __is_system_suitable(a, b):
+def is_system_suitable(a, b):
     for row in range(0, len(a)):
         if len(a[row]) != len(b):
             print('Wrong dimensions')
             return False
 
-    for row in range(0, len(a)):
-        if a[row][row] == 0:
-            print('There are zero equal elements on main diagonal')
+    for row in range(len(a)):
+        if a[row][row] != max(a[row]) or a[row][row] == 0:
+            print('Diagonal elements dont surpass')
             return False
+
     return True
 
 
-def solve_jacobi(a, b, iter_limit):
-    if not __is_system_suitable(a, b):
+def solve_jacobi(a, b, iter_bound):
+    if not is_system_suitable(a, b):
         raise ValueError('Unsuitable system')
 
-    x = np.zeros_like(b)
+    x = np.zeros(len(b))
 
-    for it_count in range(iter_limit):
+    for it_count in range(iter_bound):
         newest_x = x.copy()
 
         for i in range(len(a[0])):
@@ -40,14 +41,14 @@ def solve_jacobi(a, b, iter_limit):
     return x
 
 
-def solve_seidel(a, b, iter_limit):
-    if not __is_system_suitable(a, b):
+def solve_seidel(a, b, iter_bound):
+    if not is_system_suitable(a, b):
         raise ValueError('Unsuitable system')
 
-    x = np.zeros_like(b)
-    iterations_arr = np.zeros_like(b)
+    x = np.zeros(len(b))
+    iterations_arr = np.zeros(len(b))
 
-    for counter in range(iter_limit):
+    for counter in range(iter_bound):
         for i in range(len(a[0])):
             a_sum = 0.0
 
